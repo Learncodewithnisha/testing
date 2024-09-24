@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculate Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result input {
+            background-color: #e9ecef;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Marks for 5 Subjects</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="subject1">Subject 1:</label>
+            <input type="text" id="subject1" name="subject1" required>
+
+            <label for="subject2">Subject 2:</label>
+            <input type="text" id="subject2" name="subject2" required>
+
+            <label for="subject3">Subject 3:</label>
+            <input type="text" id="subject3" name="subject3" required>
+
+            <label for="subject4">Subject 4:</label>
+            <input type="text" id="subject4" name="subject4" required>
+
+            <label for="subject5">Subject 5:</label>
+            <input type="text" id="subject5" name="subject5" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {% if total %}
+        <div class="result">
+            <label for="total">Total Marks:</label>
+            <input type="text" id="total" name="total" value="{{ total }}" readonly>
+            <br>
+            <label for="percentage">Percentage:</label>
+            <input type="text" id="percentage" name="percentage" value="{{ percentage }}%" readonly>
+            <br>
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" name="grade" value="{{ grade }}" readonly>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
